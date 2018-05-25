@@ -36,13 +36,13 @@ class AddUserView(View):
     def post(self, request):
         form = AddUserForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            username = form.cleaned_data['name']
             if User.objects.filter(username=username).exists():
-                form.add_error('username', "username already exists")
+                form.add_error('name', "name already exists")
             password = form.cleaned_data['password']
             password2 = form.cleaned_data['password2']
             if password != password2:
-                form.add_error('password', "Passwords don't match")
+                form.add_error('password', "passwords don't match")
             if not form.errors:
                 User.objects.create_user(
                     username=username,
@@ -74,7 +74,7 @@ class UserLoginView(View):
     def post(self, request):
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            username = form.cleaned_data['name']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             if user is not None:

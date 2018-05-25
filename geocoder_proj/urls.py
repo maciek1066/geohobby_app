@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from geocoder.views import BasicView, AddUserView
+from django.conf.urls import url
+from geocoder.views import (
+    BasicView,
+    AddUserView,
+    UserLoginView,
+    UserLogoutView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
