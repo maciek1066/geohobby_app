@@ -13,12 +13,12 @@
 
         {% if user.is_authenticated %}
             <div class="btn-toolbar">
-        <a href="{% url 'geolocation' %}"
-            class="float-sm-left">
-            <button class="btn btn-info mr-1" type="submit">Geolocation</button></a>
         <a href="{% url 'hobby' %}"
            class="float-sm-left">
             <button class="btn btn-info mr-1" type="submit">Hobby</button></a>
+        <a href="{% url 'geolocation' %}"
+            class="float-sm-left">
+            <button class="btn btn-info mr-1" type="submit">Geolocation</button></a>
         <a href="{% url 'logout' %}"
            class="float-sm-right">
             <button class="btn btn-outline-secondary" type="submit">Logout</button></a>
