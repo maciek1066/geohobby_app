@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="p-3 mb-2 bg-info text-white rounded">
+
+    <form action="" method="POST">
+    {% csrf_token %}
+    {% if member %}
+        <input type="submit"  name="quit" value="quit"><br>
+    {% elif not member %}
+        <input type="submit" name="join" value="join">
+    {% endif %}
+    </form>
+
+    {{ hobby.hobby_name }} members:<br>
+    {% for m in members %}
+        <ul>
+        <li>{{ m.username }}</li>
+        </ul>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

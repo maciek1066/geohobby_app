@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h4>Hello {{ username }}</h4>
+    <div class="p-3 mb-2 bg-info text-white rounded">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>Add your new hobby</label>
+        {{ form.as_p }}
+        <input type="submit" value="create hobby">
+    </form>
+    </div>
+    <div class="p-3 mb-2 bg-info text-white rounded">
+    <p>Your hobbies:</p>
+        {% for n in user_hobbies %}
+            <a href="/hobby_details/{{ n.pk }}" class="badge badge-pill badge-info">
+            {{ n.hobby_name }}
+            </a>
+            <br>
+        {% endfor %}<br>
+    </div>
+    <div class="p-3 mb-2 bg-info text-white rounded">
+    <p>Other hobbies:</p>
+        {% for n in hobbies %}
+            <a href="/hobby_details/{{ n.pk }}" class="badge badge-pill badge-info">
+            {{ n.hobby_name }}
+            </a>
+            <br>
+{#            {% for m in hobbies.group %}#}
+{#                {{ m.username }}#}
+{#            {% endfor %}#}
+        {% endfor %}
+    </div>
+{#    <form action="" method="POST">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <input type="submit" value="create account" class="btn btn-primary">#}
+{#    </form>#}
+{% endblock %}

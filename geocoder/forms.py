@@ -1,20 +1,28 @@
+from django.forms import ModelForm
 from django import forms
 from .models import User, Hobby
 
 
 class AddUserForm(forms.Form):
-    name = forms.CharField(label='name')
-    email = forms.CharField(label='email',
+    username = forms.CharField(label='Name')
+    email = forms.CharField(label='Email',
                             widget=forms.EmailInput)
-    password = forms.CharField(label='password',
+    password = forms.CharField(label='Password',
                                widget=forms.PasswordInput)
-    password2 = forms.CharField(label='confirm password',
+    password2 = forms.CharField(label='Confirm Password',
                                 widget=forms.PasswordInput)
 
 
 class LoginForm(forms.Form):
-    user = forms.CharField(label='name')
-    password = forms.CharField(label='password',
+    username = forms.CharField(label='Name')
+    password = forms.CharField(label='Password',
                                widget=forms.PasswordInput)
+
+
+class HobbyForm(ModelForm):
+    class Meta:
+        model = Hobby
+        fields = ['hobby_name']
+
 
 

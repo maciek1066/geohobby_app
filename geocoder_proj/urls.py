@@ -21,6 +21,9 @@ from geocoder.views import (
     AddUserView,
     UserLoginView,
     UserLogoutView,
+    HobbyView,
+    HobbyDetailView,
+    GeoLocationView,
 )
 
 urlpatterns = [
@@ -29,4 +32,7 @@ urlpatterns = [
     url('^register/$', AddUserView.as_view(), name="register"),
     url('^login/$', UserLoginView.as_view(), name="login"),
     url('^logout/$', UserLogoutView.as_view(), name="logout"),
+    url('^hobby/$', HobbyView.as_view(), name="hobby"),
+    url('^hobby_details/(?P<hobby_id>(\d)+)$', HobbyDetailView.as_view(), name="hobby_details"),
+    url('^geolocation/$', GeoLocationView.as_view(), name="geolocation"),
 ]
