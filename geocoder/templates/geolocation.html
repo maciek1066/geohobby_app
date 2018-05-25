@@ -1,6 +1,10 @@
 {% extends "main.html" %}
 
 {% block content %}
-    your external ip address is:
-    {{ ip }}
+    <h4>Your details:</h4>
+    ip:
+    {{ ip }}<br>
+    {{ country }}, {{ city }}<br>
+    coordinates: lat:{{ latitude }}, lon:{{ longitude }}
+
 {% endblock %}

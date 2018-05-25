@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.db import models
 from geocoder.forms import AddUserForm, LoginForm, HobbyForm
 from geocoder.models import Hobby
-from config import api_key
+import requests
 
 
 # basic view with links to login/register
@@ -170,13 +170,25 @@ class HobbyDetailView(View):
 class GeoLocationView(View):
     def get(self, request):
         user = request.user
+        #  to avoid proxy
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[-1].strip()
         else:
             ip = request.META.get('REMOTE_ADDR')
+        response = requests.get("http://ip-api.com/json/")
+        data = response.json()
+        country = data['country']
+        city = data['city']
+        longitude = data['lon']
+        latitude = data['lat']
         ctx = {
+            "city": city,
             "ip": ip,
+            "data": data,
+            "country": country,
+            "longitude": longitude,
+            "latitude": latitude,
         }
         return render(
             request,
